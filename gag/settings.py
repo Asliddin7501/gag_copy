@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+from django.contrib import messages
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -79,8 +81,10 @@ WSGI_APPLICATION = 'gag.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'gag',
+        'USER': 'root',
+        'PASSWORD': 'Qwerty123$'
     }
 }
 
@@ -134,3 +138,13 @@ MEDIA_ROOT = BASE_DIR / 'uploads'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'client.User'
+
+MESSAGE_TAGS = {
+     messages.INFO: "alert alert-info",
+     messages.WARNING: "alert alert-warning",
+     messages.ERROR: "alert alert-danger",
+     messages.SUCCESS: "alert alert-success",
+     messages.DEBUG: "alert alert-dark"
+}
