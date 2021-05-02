@@ -15,7 +15,7 @@
 <nav class="navbar navbar-light bg-light d-flex">
     <a class="navbar-brand" href="{% url 'main:index' %}">GAG</a>
     {% if user.is_authenticated %}
-        <div class="nav-item dropdown">
+        <div class="nav-item dropdown ml-auto">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
                 <img class="rounded-circle cover user-avatar" src="{{ user.avatar }}" alt="">
             </a>
@@ -24,6 +24,7 @@
                 <a class="dropdown-item" href="{% url 'client:logout' %}">Chiqish</a>
             </div>
         </div>
+        <a href="{% url 'main:upload' %}" class="btn btn-primary rounded-pill"><i class="bi bi-upload"></i>{{ request.title|default:"Yuklash" }}</a>
     {% else %}
         <a href="{% url 'client:login' %}" class="btn text-secondary ml-auto mr-3">Tizimga kirish</a>
         <a href="{% url 'client:registration' %}" class="btn btn-primary rounded-pill">Ro'yxatdan o'tish</a>
