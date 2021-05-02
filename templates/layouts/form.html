@@ -13,7 +13,7 @@
                             {{ form | crispy }}
                         </div>
                         <div class="card-header d-flex">
-                            <button type="submit" class="btn btn-primary ml-auto">{{ request.title }}</button>
+                            <button type="submit" class="btn btn-primary ml-auto">{{ request.button_title|default:request.title|default:"Saqlash" }}</button>
                         </div>
                     </form>
                 </div>
