@@ -11,9 +11,14 @@
     <link rel="stylesheet" href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}">
 </head>
 <body>
-<nav class="navbar navbar-light bg-light">
+<nav class="navbar navbar-light bg-light d-flex">
     <a class="navbar-brand" href="{% url 'main:index' %}">GAG</a>
-    <a href="{% url 'client:registration' %}" class="btn btn-primary rounded-pill">{{ request.title }}</a>
+    {% if user.is_authenticated %}
+    <a href="{% url 'client:logout' %}" class="btn text-secondary ml-auto mr-3">Chiqish</a>
+    {% else %}
+    <a href="{% url 'client:login' %}" class="btn text-secondary ml-auto mr-3">Tizimga kirish</a>
+    <a href="{% url 'client:registration' %}" class="btn btn-primary rounded-pill">Ro'yxatdan o'tish</a>
+    {% endif %}
 </nav>
 {% if messages %}
     <div class="messages">
