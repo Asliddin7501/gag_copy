@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
-    'client'
+    'client',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
@@ -148,3 +149,5 @@ MESSAGE_TAGS = {
      messages.SUCCESS: "alert alert-success",
      messages.DEBUG: "alert alert-dark"
 }
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

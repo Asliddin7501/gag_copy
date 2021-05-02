@@ -11,7 +11,22 @@
     <link rel="stylesheet" href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}">
 </head>
 <body>
-
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="{% url 'main:index' %}">GAG</a>
+    <a href="{% url 'client:registration' %}" class="btn btn-primary rounded-pill">{{ request.title }}</a>
+</nav>
+{% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+            <div class="{{ message.tags }} alert-dismissible fade show">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
 {% block content %}{% endblock %}
 
 <script src="{% static 'vendor/jquery-3.5.1.js' %}"></script>
