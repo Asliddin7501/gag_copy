@@ -12,3 +12,13 @@
 .lang_link {
     font-size: 1.7rem;
 }
+
+.cat-img {
+    width: 16px;
+    height: 16px;
+}
+
+.m-p {
+    margin: 0 !important;
+    padding: 0 !important;
+}

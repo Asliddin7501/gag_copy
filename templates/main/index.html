@@ -1,5 +1,26 @@
 {% extends 'layouts/base.html' %}
+{% load static %}
 
 {% block content %}
-    Salom!!!
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                <h6 class="text-secondary font-weight-bold mt-2">KATEGORIYALAR</h6>
+                <div class="m-p"><img src="{% static 'img/samsung-mini.png' %}" class="cat-img m-p" alt=""><a href="#" class="btn m-p text-secondary"><small>Kategoriya 1</small></a></div>
+                <div class="m-p"><img src="{% static 'img/samsung-mini.png' %}" class="cat-img m-p" alt=""><a href="#" class="btn m-p text-secondary"><small>Kategoriya 2</small></a></div>
+                <div class="m-p"><img src="{% static 'img/samsung-mini.png' %}" class="cat-img m-p" alt=""><a href="#" class="btn m-p text-secondary"><small>Kategoriya 3</small></a></div>
+            </div>
+            <div class="col-10">
+                <img class="img-fluid" src="{% static 'img/samsung.png' %}" alt="">
+                <div class="row">
+                    <div class="col-9">
+                        <h1 class="text-secondary font-weight-bold">Qiziqarli rasmlar</h1>
+                    </div>
+                    <div class="col-3">
+                        <img class="img-fluid mt-3" src="{% static 'img/samsung-mini.png' %}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
