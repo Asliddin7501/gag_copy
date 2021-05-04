@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Category(TranslateMixin, models.Model):
-    translate_fileds = ['name']
+    translate_fields = ['name']
 
     name_uz = models.CharField(max_length=50)
     name_ru = models.CharField(max_length=50)
