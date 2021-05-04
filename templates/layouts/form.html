@@ -7,12 +7,12 @@
             <div class="col-6 offset-lg-3">
                 <div class="card">
                     <div class="card-header">{{ request.title }}</div>
-                    <form action="{% block url %}{% endblock %}" method="post" enctype="multipart/form-data">
+                    <form action="" method="post" enctype="multipart/form-data">
                         <div class="card-body">
                             {% csrf_token %}
                             {{ form | crispy }}
                         </div>
-                        <div class="card-header d-flex">
+                        <div class="card-header d-flex border">
                             <button type="submit" class="btn btn-primary ml-auto">{{ request.button_title|default:request.title|default:"Saqlash" }}</button>
                         </div>
                     </form>

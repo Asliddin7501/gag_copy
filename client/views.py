@@ -17,7 +17,7 @@ class ClientRegistration(View):
         request.title = _("Ro'yxatdan o'tish")
 
     def get(self, request):
-        return render(request, 'client/registration.html',{
+        return render(request, 'layouts/form.html',{
             'form': RegistrationForm()
         })
 
@@ -31,7 +31,7 @@ class ClientRegistration(View):
             messages.success(request, _("Siz muvaffaqiyatli ro'yxatdan o'tdingiz!"))
             return redirect('main:index')
 
-        return render(request, 'client/registration.html', {
+        return render(request, 'layouts/form.html', {
             'form': form
         })
 
@@ -43,7 +43,7 @@ class ClientLogin(View):
         request.title = _("Tizimga kirish")
 
     def get(self, request):
-        return render(request, 'client/login.html', {
+        return render(request, 'layouts/form.html', {
             "form": LoginForm()
         })
 
@@ -59,14 +59,14 @@ class ClientLogin(View):
 
             form.add_error('password', _("Login va/yoki parol noto'g'ri."))
 
-        return render(request, "client/login.html", {
+        return render(request, "layouts/form.html", {
             "form": form
         })
 
 
 @login_required
 def client_logout(request):
-    messages.success(request, "Xayr {}!".format(request.user.username))
+    messages.success(request, _("Xayr {}!").format(request.user.username)) # me
     logout(request)
 
     return redirect('main:index')
@@ -75,7 +75,7 @@ def client_logout(request):
 class ClientProfile(LoginRequiredMixin, UpdateView):
     model = User
     fields = ['first_name', 'last_name', 'username', 'email', 'photo']
-    template_name = 'client/profile.html'
+    template_name = 'layouts/form.html'
     success_url = reverse_lazy('client:profile')
 
     def setup(self, request, *args, **kwargs):

@@ -1,4 +1,8 @@
 {% load static %}
+{% load i18n %}
+{% get_available_languages as LANGUAGES %}
+{% get_current_language as LANGUAGE_CODE %}
+{% load helpers %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -12,23 +16,46 @@
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 <body>
-<nav class="navbar navbar-light bg-light d-flex">
-    <a class="navbar-brand" href="{% url 'main:index' %}">GAG</a>
-    {% if user.is_authenticated %}
-        <div class="nav-item dropdown ml-auto">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
-                <img class="rounded-circle cover user-avatar" src="{{ user.avatar }}" alt="">
+<nav class="navbar navbar-light border d-flex">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'main:index' %}">GAG</a>
+        {% if user.is_authenticated %}
+            <div class="nav-item dropdown ml-auto">
+                <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+                    <img class="rounded-circle cover user-avatar" src="{{ user.avatar }}" alt="">
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'client:profile' %}">{% trans 'Profil' %}</a>
+                    <a class="dropdown-item" href="{% url 'client:logout' %}">{% trans 'Chiqish' %}</a>
+                </div>
+            </div>
+            <a href="{% url 'main:upload' %}" class="btn btn-primary rounded-pill"><i
+                    class="bi bi-upload"></i>{% trans 'Yuklash' %}</a>
+        {% else %}
+            <a href="{% url 'client:login' %}" class="btn text-secondary ml-auto mr-3">{% trans "Tizimga kirish" %}</a>
+            <a href="{% url 'client:registration' %}"
+               class="btn btn-primary rounded-pill">{% trans "Ro'yxatdan o'tish" %}</a>
+        {% endif %}
+        <div class="nav-item dropdown">
+            <a class="nav-link lang_link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+                {% if LANGUAGE_CODE == "uz" %}
+                    🇺🇿
+                {% else %}
+                    🇷🇺
+                {% endif %}
             </a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="{% url 'client:profile' %}">Profile</a>
-                <a class="dropdown-item" href="{% url 'client:logout' %}">Chiqish</a>
+                {% for row in LANGUAGES %}
+                    <a class="btn" href="{{ request.get_full_path|konvert:row.0 }}">{{ row.1 }}</a>
+{#                    {% if row.0 != LANGUAGE_CODE %}#}
+{#                        <a class="btn" href="{{ request.get_full_path|konvert:row.0 }}">{{ row.1 }}</a>#}
+{#                    {% else %}#}
+{#                        <a class="btn" href="{{ request.get_full_path|konvert:row.0 }}">{{ row.1 }}</a>#}
+{#                    {% endif %}#}
+                {% endfor %}
             </div>
         </div>
-        <a href="{% url 'main:upload' %}" class="btn btn-primary rounded-pill"><i class="bi bi-upload"></i>{{ request.title|default:"Yuklash" }}</a>
-    {% else %}
-        <a href="{% url 'client:login' %}" class="btn text-secondary ml-auto mr-3">Tizimga kirish</a>
-        <a href="{% url 'client:registration' %}" class="btn btn-primary rounded-pill">Ro'yxatdan o'tish</a>
-    {% endif %}
+    </div>
 </nav>
 {% if messages %}
     <div class="messages">

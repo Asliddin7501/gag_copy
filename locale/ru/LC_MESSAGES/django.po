@@ -1,0 +1,98 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-03 20:46+0500\n"
+"PO-Revision-Date: 2021-05-03 20:50+0500\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+"X-Generator: Poedit 2.3\n"
+
+#: client/forms.py:8
+msgid "Parol takroran"
+msgstr "Повторите пароль"
+
+#: client/forms.py:12
+msgid "Parollar bir xil emas"
+msgstr "Пароли не совпадают"
+
+#: client/forms.py:20 client/forms.py:32
+msgid "Login"
+msgstr "Вход в аккаунт"
+
+#: client/forms.py:21 client/forms.py:33
+msgid "Parol"
+msgstr "Пароль"
+
+#: client/forms.py:24
+msgid "Lotin harflari, sonlar va @/./+/-/_ belgilardan iborat bo'lishi lozim."
+msgstr ""
+"Он должен состоять из латинских букв, цифр и символов @ /. / + / - / _."
+
+#: client/views.py:17 templates/layouts/base.html:37
+msgid "Ro'yxatdan o'tish"
+msgstr "Регистрация"
+
+#: client/views.py:31
+msgid "Siz muvaffaqiyatli ro'yxatdan o'tdingiz!"
+msgstr "Вы успешно зарегистрировались!"
+
+#: client/views.py:43 templates/layouts/base.html:35
+msgid "Tizimga kirish"
+msgstr "Вход в аккаунт"
+
+#: client/views.py:56
+msgid "Xush kelibsiz, {}!"
+msgstr "Добро пожаловать, {}!"
+
+#: client/views.py:60
+msgid "Login va/yoki parol noto'g'ri."
+msgstr "Пользователь и / или пароль неверны."
+
+#: client/views.py:69
+msgid "Xayr {}!"
+msgstr "Пока {}!"
+
+#: client/views.py:84 templates/layouts/base.html:28
+msgid "Profil"
+msgstr "Профиль"
+
+#: client/views.py:85
+msgid "Saqlash"
+msgstr "Сохранить"
+
+#: main/models.py:22
+msgid "Kategoriya"
+msgstr "Категория"
+
+#: main/models.py:23
+msgid "Izoh"
+msgstr "Комментария"
+
+#: main/models.py:24
+msgid "Rasm/Video"
+msgstr "Фото/Видео"
+
+#: main/views.py:25 templates/layouts/base.html:33
+msgid "Yuklash"
+msgstr "Загрузить"
+
+#: main/views.py:28
+msgid "Muvaffaqiyatli qo'shildi."
+msgstr "Успешно добавлено."
+
+#: templates/layouts/base.html:29
+msgid "Chiqish"
+msgstr "Выход"
