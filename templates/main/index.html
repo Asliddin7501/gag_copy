@@ -52,15 +52,15 @@
                                 <div>{{ post.comment }}</div>
                                 <div>
                                     <div class="d-inline-block border p-1 m-1">
-                                        <a href="#" class="text-dark">
+                                        <a href="{% url 'main:like' 'like' post.id %}?return={{ request.get_full_path }}" class="text-dark">
                                             <i class="bi bi-hand-thumbs-up"></i>
-                                            <span>0</span>
+                                            <span>{{ post.like }}</span>
                                         </a>
                                     </div>
                                     <div class="d-inline-block border p-1 m-1">
-                                        <a href="#" class="text-dark">
+                                        <a href="{% url 'main:like' 'dislike' post.id %}?return={{ request.get_full_path }}}" class="text-dark">
                                             <i class="bi bi-hand-thumbs-down"></i>
-                                            <span>0</span>
+                                            <span>{{ post.dislike }}</span>
                                         </a>
                                     </div>
                                     <div class="d-inline-block border p-1 m-1">

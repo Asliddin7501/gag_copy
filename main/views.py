@@ -1,9 +1,11 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
-from django.shortcuts import render
+from django.db import transaction
+from django.http import Http404
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import View, CreateView, ListView
+from django.views.generic import View, CreateView
 from django.utils.translation import gettext_lazy as _
 from main.models import Post, Category
 
@@ -38,3 +40,26 @@ class UploadPost(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user # me
         messages.success(self.request, _("Muvaffaqiyatli qo'shildi."))
         return super().form_valid(form)
+
+
+class PostLike(View):
+    def get(self, request, post_id, action):
+        if action not in ['like', 'dislike']:
+            raise Http404
+
+        def _redirect():
+            return redirect(request.GET.get('return', 'main:index'))
+
+        with transaction.atomic():
+            try:
+                post = Post.objects.select_for_update().get(id=post_id)
+            except:
+                return _redirect()
+
+            if action == 'like':
+                post.like += 1
+            else:
+                post.dislike += 1
+            post.save()
+
+        return _redirect()
