@@ -1,3 +1,5 @@
+import os
+
 from django.db import models
 from gag.helpers import UploadTo
 from gag.mixins import TranslateMixin
@@ -26,6 +28,22 @@ class Post(models.Model):
     dislike = models.IntegerField(default=0)
     added_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    @property
+    def ext(self):
+        return (os.path.splitext(self.file.name)[1])[1:].lower()
+
+    @property
+    def is_image(self):
+        return self.ext in ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp']
+
+    @property
+    def is_video(self):
+        return self.ext in ['mp4', 'mpeg']
+
+    @property
+    def is_audio(self):
+        return self.ext in ['mp3', 'wav']
 
 
 class PostComment(models.Model):
