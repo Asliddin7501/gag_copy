@@ -1,0 +1,45 @@
+<div class="m-p d-flex">
+    <a class="btn" href="{% url 'main:cat' post.category.id %}">
+        <img class="cat-img my-auto" src="{{ MEDIA_URL }}{{ post.category.image.url }}"
+             alt="">
+        <span class="my-auto ml-1 text-dark">{{ post.category.name }}</span>
+    </a>
+    <img class="cat-img ml-2 my-auto" src="{{ MEDIA_URL }}{{ post.user.avatar }}"
+         alt="">
+    <span class="my-auto ml-1">{{ post.user.username }}</span>
+</div>
+{% if post.is_video %}
+    <div>
+        <video width="640" controls>
+            <source src="{{ MEDIA_URL }}{{ post.file.url }}" type="video/mp4">
+        </video>
+    </div>
+{% elif post.is_image %}
+    <div>
+        <img width="640px" src="{{ MEDIA_URL }}{{ post.file.url }}" alt="">
+    </div>
+{% elif post.is_audio %}
+    <audio style="width: 640px;" controls>
+        <source src="{{ MEDIA_URL }}{{ post.file.url }}" type="audio/mp3">
+    </audio>
+{% endif %}
+<div>{{ post.comment }}</div>
+<div>
+    <div class="d-inline-block border p-1 m-1">
+        <a href="{% url 'main:like' 'like' post.id %}?return={{ request.get_full_path }}" class="text-dark">
+            <i class="bi bi-hand-thumbs-up"></i>
+            <span>{{ post.like }}</span>
+        </a>
+    </div>
+    <div class="d-inline-block border p-1 m-1">
+        <a href="{% url 'main:like' 'dislike' post.id %}?return={{ request.get_full_path }}}" class="text-dark">
+            <i class="bi bi-hand-thumbs-down"></i>
+            <span>{{ post.dislike }}</span>
+        </a>
+    </div>
+    <div class="d-inline-block border p-1 m-1">
+        <a href="#" class="text-dark">
+            <i class="bi bi-chat-left-fill text-secondary"></i>
+        </a>
+    </div>
+</div>

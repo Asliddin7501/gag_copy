@@ -1,87 +1,16 @@
-{% extends 'layouts/base.html' %}
+{% extends 'layouts/banner.html' %}
 {% load static i18n %}
 {% load bootstrap_pagination %}
 
 
-{% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-2">
-                <h6 class="text-secondary font-weight-bold mt-2">KATEGORIYALAR</h6>
-                {% for category in categories %}
-                    <div class="m-p">
-                        <a href="{% url 'main:cat' category.id %}" class="btn m-p text-secondary">
-                            <img src="{{ MEDIA_URL }}{{ category.image.url }}" class="cat-img m-p" alt="">
-                            <small>{% trans category.name %}</small>
-                        </a>
-                    </div>
-                {% endfor %}
-            </div>
-            <div class="col-10">
-                <img class="img-fluid" src="{% static 'img/banner.gif' %}" alt="">
-                <div class="row">
-                    {% if object_list %}
-                        <div class="col-9">
-                            <h1 class="text-secondary font-weight-bold">Qiziqarli rasmlar</h1>
-                            {% for post in object_list %}
-                                <div class="m-p d-flex">
-                                    <a class="btn" href="{% url 'main:cat' post.category.id %}">
-                                        <img class="cat-img my-auto" src="{{ MEDIA_URL }}{{ post.category.image.url }}"
-                                             alt="">
-                                        <span class="my-auto ml-1 text-dark">{{ post.category.name }}</span>
-                                    </a>
-                                    <img class="cat-img ml-2 my-auto" src="{{ MEDIA_URL }}{{ post.user.avatar }}"
-                                         alt="">
-                                    <span class="my-auto ml-1">{{ post.user.username }}</span>
-                                </div>
-                                {% if post.is_video %}
-                                    <div>
-                                        <video width="640" controls>
-                                            <source src="{{ MEDIA_URL }}{{ post.file.url }}" type="video/mp4">
-                                        </video>
-                                    </div>
-                                {% elif post.is_image %}
-                                    <div>
-                                        <img width="640px" src="{{ MEDIA_URL }}{{ post.file.url }}" alt="">
-                                    </div>
-                                {% elif post.is_audio %}
-                                    <audio style="width: 640px;" controls>
-                                        <source src="{{ MEDIA_URL }}{{ post.file.url }}" type="audio/mp3">
-                                    </audio>
-                                {% endif %}
-                                <div>{{ post.comment }}</div>
-                                <div>
-                                    <div class="d-inline-block border p-1 m-1">
-                                        <a href="{% url 'main:like' 'like' post.id %}?return={{ request.get_full_path }}" class="text-dark">
-                                            <i class="bi bi-hand-thumbs-up"></i>
-                                            <span>{{ post.like }}</span>
-                                        </a>
-                                    </div>
-                                    <div class="d-inline-block border p-1 m-1">
-                                        <a href="{% url 'main:like' 'dislike' post.id %}?return={{ request.get_full_path }}}" class="text-dark">
-                                            <i class="bi bi-hand-thumbs-down"></i>
-                                            <span>{{ post.dislike }}</span>
-                                        </a>
-                                    </div>
-                                    <div class="d-inline-block border p-1 m-1">
-                                        <a href="#" class="text-dark">
-                                            <i class="bi bi-chat-left-fill text-secondary"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            {% endfor %}
-                            {% bootstrap_paginate page_obj range=10 show_prev_next="true" show_first_last="false" %}
-                        </div>
-                    {% else %}
-                        <div class="col-9">
-                            <h1 class="text-secondary font-weight-bold">Birorta ham maqola topilmadi</h1>
-                        </div>
-                    {% endif %}
-                    <div class="col-3">
-                        <img class="img-fluid mt-3" src="{% static 'img/small-banner.png' %}" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+{% block banner_content %}
+    {% if object_list %}
+        <h1 class="text-secondary font-weight-bold">Qiziqarli rasmlar</h1>
+        {% for post in object_list %}
+            {% include 'widgets/post.html' with post=post %}
+        {% endfor %}
+        {% bootstrap_paginate page_obj range=10 show_prev_next="true" show_first_last="false" %}
+    {% else %}
+        <h1 class="text-secondary font-weight-bold">Birorta ham maqola topilmadi</h1>
+    {% endif %}
 {% endblock %}

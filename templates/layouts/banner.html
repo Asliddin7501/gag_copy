@@ -1,0 +1,33 @@
+{% extends 'layouts/base.html' %}
+{% load static i18n %}
+{% load bootstrap_pagination %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                <h6 class="text-secondary font-weight-bold mt-2">KATEGORIYALAR</h6>
+                {% for category in categories %}
+                    <div class="m-p">
+                        <a href="{% url 'main:cat' category.id %}" class="btn m-p text-secondary">
+                            <img src="{{ MEDIA_URL }}{{ category.image.url }}" class="cat-img m-p" alt="">
+                            <small>{% trans category.name %}</small>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col-10">
+                <img class="img-fluid" src="{% static 'img/banner.gif' %}" alt="">
+                <div class="row">
+                    <div class="col-9">
+                        {% block banner_content %}{% endblock %}
+                    </div>
+                    <div class="col-3">
+                        <img class="img-fluid mt-3" src="{% static 'img/small-banner.png' %}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
